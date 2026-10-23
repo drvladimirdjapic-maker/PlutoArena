@@ -10,8 +10,16 @@ APM limits, allowing players to experience Pluto at different skill levels
 without manually configuring the required components.
 
 > **Current version: PlutoArena v1.2**
+## Download
 
----
+**Latest release: PlutoArena v1.2**
+
+Download the Windows installer from the **Releases** section of this repository:
+➡️ **[Download PlutoArena-1.2-Setup.exe](https://github.com/drvladimirdjapic-maker/PlutoArena/releases/download/v1.2/PlutoArena-1.2-Setup.exe)**
+
+PlutoArena does **not** include StarCraft: Remastered or Pluto AI.
+
+You will need to install StarCraft: Remastered and download the supported Pluto AI release separately before completing PlutoArena setup.
 
 ## Features
 
