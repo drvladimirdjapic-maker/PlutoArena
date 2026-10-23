@@ -39,7 +39,31 @@ https://youtu.be/kwpX3nmxXg0
 
 ## Screenshots
 
-Screenshots coming soon.
+## Screenshots
+
+### Main Interface
+
+Choose the Human player race, Pluto AI race, map and AI difficulty from a single interface.
+
+![PlutoArena main interface](screenshots/plutoarena-main.png)
+
+### AI Difficulty Levels
+
+PlutoArena provides multiple difficulty levels ranging from **S — Original (full strength)** to **F — Beginner**.
+
+![PlutoArena difficulty levels](screenshots/plutoarena-gameplay.png)
+
+### Map Selection
+
+Choose from a selection of classic and competitive StarCraft: Brood War maps.
+
+![PlutoArena map selection](screenshots/plutoarena-lobby.png)
+
+### Setup & Compatibility Check
+
+The Setup screen automatically checks the StarCraft: Remastered version, Pluto AI files, model files, Remastered bridge, difficulty modules, maps, LAN profiles and OCR support.
+
+![PlutoArena setup](screenshots/plutoarena-settings.png)
 
 ---
 
