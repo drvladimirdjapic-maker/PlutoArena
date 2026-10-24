@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://drvladimirdjapic-maker.github.io/PlutoArena/sitemap.xml
