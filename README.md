@@ -2,44 +2,47 @@
 
 ### Play against Pluto AI in StarCraft: Remastered
 
-PlutoArena is a Windows launcher designed to make it easier to play against
-**Pluto AI** in **StarCraft: Remastered**.
+PlutoArena is a Windows launcher that makes it easy to play against
+**Pluto AI** (the self-play neural-network bot by [tscmoo](https://github.com/tscmoo/pluto))
+in **StarCraft: Remastered**.
 
-It automates the launch process and provides configurable AI difficulty and
-APM limits, allowing players to experience Pluto at different skill levels
-without manually configuring the required components.
+Pick your race, Pluto's race, a map and a rank, press **PLAY** - PlutoArena
+starts two StarCraft windows (yours and Pluto's), creates a LAN Melee game,
+brings Pluto into it and sets the races. You only choose your color and click
+**Ok**.
 
-> **Current version: PlutoArena v1.2**
+> **Current version: PlutoArena v2.0**
+
 ## Download
 
-**Latest release: PlutoArena v1.2**
+➡️ **[Download PlutoArena-2.0-Setup.exe](https://github.com/drvladimirdjapic-maker/PlutoArena/releases/download/v2.0/PlutoArena-2.0-Setup.exe)**
 
-Download the Windows installer from the **Releases** section of this repository:
-➡️ **[Download PlutoArena-1.2-Setup.exe](https://github.com/drvladimirdjapic-maker/PlutoArena/releases/download/v1.2/PlutoArena-1.2-Setup.exe)**
+All versions: [Releases](https://github.com/drvladimirdjapic-maker/PlutoArena/releases)
+(each release lists its VirusTotal scan and SHA-256).
 
-PlutoArena does **not** include StarCraft: Remastered or Pluto AI.
-
-You will need to install StarCraft: Remastered and download the supported Pluto AI release separately before completing PlutoArena setup.
+PlutoArena does **not** include StarCraft: Remastered or Pluto AI. Install
+StarCraft: Remastered and download a supported Pluto AI release separately
+(see [Requirements](#requirements)).
 
 ## Features
 
-- StarCraft: Remastered support
-- Pluto AI / CoG 2026 support
-- Multiple AI difficulty levels
-- Configurable APM limits
-- Race selection
-- Map selection
-- Automated launch process
-- Native SC:R bridge included with PlutoArena
-- Designed for Human vs Pluto AI games
+- **Pluto 1.0 and Pluto 2.0** (2.0 runs on the CPU, no GPU needed) - pick one in the launcher
+- **Difficulty ranks S to F**, like the ladder: S = full strength; S-B only
+  add reaction delay, from C down also an APM limit
+- **REMATCH** - play again without restarting StarCraft
+- **Ladder mode** - 2 wins in a row = rank up, 2 losses = rank down
+- **Game summary** after each game, with Pluto 2.0's own win-probability chart
+- **STATS** - your results by Pluto's race, your race and map
+- Pluto's chat ("gl hf", "gg") shown on your screen, Pluto's sound muted
+- Command-console look that takes the color of your race, UI sounds
+- Race and map selection, arena maps included
+- Native SC:R bridge included - no extra downloads besides Pluto itself
 
 ---
 
 ## Demo
 
-### PlutoArena v1.2
-
-Watch PlutoArena running with StarCraft: Remastered:
+Watch PlutoArena running with StarCraft: Remastered (v1.2):
 
 https://youtu.be/kwpX3nmxXg0
 
@@ -47,29 +50,24 @@ https://youtu.be/kwpX3nmxXg0
 
 ## Screenshots
 
-## Screenshots
-
 ### Main Interface
 
-Choose the Human player race, Pluto AI race, map and AI difficulty from a single interface.
+Choose your race, Pluto's race, map, rank and Pluto version from a single
+console. The window takes the color of your race.
 
 ![PlutoArena main interface](screenshots/plutoarena-main.png)
 
-### AI Difficulty Levels
+### Game Summary
 
-PlutoArena provides multiple difficulty levels ranging from **S — Original (full strength)** to **F — Beginner**.
+After each game: the result, your record on the rank and - with Pluto 2.0 -
+your winning chances as Pluto saw them during the game.
 
-![PlutoArena difficulty levels](screenshots/plutoarena-gameplay.png)
-
-### Map Selection
-
-Choose from a selection of classic and competitive StarCraft: Brood War maps.
-
-![PlutoArena map selection](screenshots/plutoarena-lobby.png)
+![PlutoArena game summary](screenshots/plutoarena-summary.png)
 
 ### Setup & Compatibility Check
 
-The Setup screen automatically checks the StarCraft: Remastered version, Pluto AI files, model files, Remastered bridge, difficulty modules, maps, LAN profiles and OCR support.
+The Setup screen checks the StarCraft: Remastered version, Pluto AI files,
+the bridge, difficulty modules, maps, LAN profiles and OCR support.
 
 ![PlutoArena setup](screenshots/plutoarena-settings.png)
 
@@ -77,99 +75,174 @@ The Setup screen automatically checks the StarCraft: Remastered version, Pluto A
 
 ## Requirements
 
-To use PlutoArena you need:
+1. **StarCraft: Remastered 1.23.10.13515**, English client,
+   *Options > Graphics > Display Mode = Windowed (Fullscreen)*
+2. **Pluto AI by tscmoo** - not included (binary-only release, no redistribution license):
+   - Pluto 1.0: [release cog2026-2578600](https://github.com/tscmoo/pluto/releases/tag/cog2026-2578600)
+   - Pluto 2.0 (optional, CPU with AVX2, 6+ cores): [release v2.0](https://github.com/tscmoo/pluto/releases/tag/v2.0)
+3. **Windows 10/11 64-bit** (PlutoArena uses the English Windows OCR; it tells you if it is missing)
 
-- **StarCraft: Remastered**
-- **Pluto AI by tscmoo**
-- Pluto CoG 2026 release:
-  `md07x02_cog2026_2578600_int8mv`
-- `pluto.dll`
-- Pluto model/data folder
-- Windows
-
-> **Important:** The Native bridge required by PlutoArena is included with
-> PlutoArena. You do not need to download the Native package separately.
+> **Important:** The native bridge required by PlutoArena is included with
+> PlutoArena. You do not need to download it separately.
 
 ---
 
 ## Installation
 
-A detailed installation guide will be added here.
-
-For now, see the video demonstration above.
-
----
+1. Run `PlutoArena-2.0-Setup.exe` (no administrator rights needed).
+2. Start PlutoArena - on the first start the **SETUP** window opens.
+3. Check the paths (most are found automatically) and click **CHECK**
+   (green = OK, yellow = warning, red = must be fixed), then **SAVE**.
 
 ## How to Play
 
-1. Start PlutoArena.
-2. Select the desired game settings.
-3. Select the Pluto AI difficulty.
-4. Configure the APM limit if desired.
-5. Select the map and race.
-6. Launch the game through PlutoArena.
-7. Play against Pluto AI in StarCraft: Remastered.
+1. Close all StarCraft windows.
+2. Choose your race, Pluto's race, the map, the rank and the Pluto version.
+3. Press **PLAY** and wait (~45 s) - the mouse and keyboard are locked
+   while PlutoArena clicks through the menus (**Esc** cancels).
+4. In the lobby choose your color and click **Ok**.
+5. After the game: **REMATCH** or **CLOSE**.
 
 ---
 
-## Difficulty & APM Limits
+## Difficulty Ranks
 
-PlutoArena allows Pluto AI to be used at different difficulty levels.
+| Rank | Reaction delay | APM limit |
+|---|---|---|
+| S | none (original Pluto) | none |
+| A | 0.08 s | none |
+| B | 0.17 s | none |
+| C | 0.25 s | 220 |
+| D | 0.40 s | 170 |
+| E | 0.60 s | 130 |
+| F | 0.80 s | 100 (beginner) |
 
-The goal is not only to run the original high-performance Pluto AI, but also
-to provide more playable configurations for players of different skill levels.
+S to B differ only in reaction time, so Pluto plays "like itself", just
+slower to react. From C down the APM limit also cuts its bursts in fights.
 
-Difficulty and APM behavior may continue to be adjusted in future releases.
+---
+
+## What the program does on your PC
+
+PlutoArena automates things that look unusual for a normal app, so here is
+exactly what it does and where in the code:
+
+| What | Why | Code |
+|---|---|---|
+| Starts StarCraft twice | One window for you, one for Pluto. StarCraft allows only one instance, so the launcher closes the "Starcraft Check For Other Instances" handle in the first process. | `ScrMultiInstance.cs` |
+| Loads the Pluto Remastered bridge into Pluto's StarCraft | The bridge (by lpflhh, see below) runs Pluto inside StarCraft: Remastered. It is started by the bridge's own `start-pluto.ps1` / `scr-loader.exe` - only into Pluto's StarCraft, never into yours. | `ArenaLauncher.StartPlutoBridge` |
+| Runs PowerShell | Only `native\scripts\start-pluto.ps1` of the bridge (checks file hashes, starts StarCraft, injects the bridge). | `ArenaLauncher.StartPlutoBridge` |
+| Reads the screen (Windows OCR) | To see which StarCraft menu is shown (Multiplayer, LAN, Create Game, score screen ...). Nothing is saved unless you turn on `DebugImages=1`. | `ScrOcr.cs` |
+| Clicks and presses keys | To click through the StarCraft menus (SendInput). | `ScrInput.cs` |
+| Blocks the real mouse/keyboard for ~45 s | While it clicks through the menus, so a bumped mouse cannot break it. **Esc** cancels at once; it unlocks by itself after 3 minutes at most. Low-level hooks, no keys are recorded. | `InputBlocker.cs` |
+| Mutes Pluto's StarCraft | Windows volume mixer (Core Audio) for Pluto's process only. | `ScrAudio.cs` |
+
+No network connections are made by PlutoArena (the LAN game is StarCraft's
+own). Settings, log and statistics are plain text files next to the exe:
+`PlutoArena.ini`, `PlutoArena.log`, `PlutoArena-stats.txt`.
+
+---
+
+## Building from source
+
+### 1. PlutoArena (C#)
+
+- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+
+```powershell
+dotnet build
+.\bin\Debug\net8.0-windows10.0.19041.0\PlutoArena.exe
+```
+
+### 2. The Pluto Remastered bridge (C++) - optional
+
+The bridge is [lpflhh/Pluto-AI-Starcraft-Remaster](https://github.com/lpflhh/Pluto-AI-Starcraft-Remaster).
+PlutoArena's changes are in `bridge-patch/` (see its README):
+
+- reaction delay + APM limit (difficulty ranks), read per game from `bridge.ini`
+- Pluto v2.0 support (binding table for the v2.0 `pluto.dll`)
+- LAN games: commands are sent in the same frame, so Pluto acts after the
+  4 frames it was trained for
+
+Needs Visual Studio 2022 (or Build Tools) with "Desktop development with C++".
+
+### 3. Installer
+
+- [Inno Setup 6](https://jrsoftware.org/isdl.php)
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\installer\publish.ps1
+```
+
+Output: `installer\output\PlutoArena-<version>-Setup.exe`. The script expects
+the bridge's `native` folder, the difficulty DLLs and the maps in the default
+folders (see the parameters at the top of `publish.ps1`).
+
+### Project layout
+
+| File | Purpose |
+|---|---|
+| `Form1.cs` | Main window: layout, status screen, start-up animation |
+| `ArenaTheme.cs` | Custom-drawn controls (sprites in the main window, drawn in code in the dialogs) |
+| `ArenaSkin.cs` | Loads the embedded skin (backgrounds, button sprites) and plays the UI sounds |
+| `StatsForm.cs` | STATS window: results by Pluto's race, your race and map |
+| `ArenaLauncher.cs` | PLAY: starts Pluto and StarCraft, clicks through the menus, supervises the game, rematch |
+| `ArenaSetup.cs` | SETUP window and the checks (StarCraft version, Pluto files, bridge, OCR) |
+| `ArenaConfig.cs` | `PlutoArena.ini` |
+| `ArenaStats.cs` | Your record, ladder mode, Pluto's per-opponent memory and 2.0 game log |
+| `ArenaExtras.cs` | Version/icon, Pluto chat pop-up, game summary window |
+| `ScrOcr.cs` | Screen reading (Windows OCR) with fallbacks for bright menu backgrounds |
+| `ScrInput.cs` | Window handling, clicks, keys, screen capture |
+| `ScrMultiInstance.cs` | Second StarCraft instance |
+| `InputBlocker.cs` | Temporary mouse/keyboard lock (Esc cancels) |
+| `ScrAudio.cs` | Mutes Pluto's StarCraft |
+| `Skin/` | Window backgrounds, button sprites and UI sounds (embedded in the exe) |
+| `tools/make_skin.py`, `tools/skin_art.py` | Generate everything in `Skin/` (Python + Pillow + numpy) - original art, no game files |
+| `tools/make_icon.py` | Generates `pluto-arena.ico` (Python + Pillow) |
+| `installer/` | Inno Setup script, `publish.ps1`, the README shipped with the installer |
+| `bridge-patch/` | Changes to the Pluto Remastered bridge |
 
 ---
 
 ## Known Issues
 
 PlutoArena is a community project and is still under development.
-
 Compatibility may depend on:
 
-- StarCraft: Remastered version
-- Pluto AI version
-- Windows configuration
-- Hardware and system configuration
+- StarCraft: Remastered version (the bridge checks the exact version; a new
+  Blizzard patch needs an updated bridge)
+- Pluto AI version (only the two releases above pass the bridge's file check)
+- Windows configuration (English OCR must be installed)
 
-If you encounter a problem, please report it through GitHub Issues.
-
----
-
-## Credits
-
-### Pluto AI
-
-PlutoArena uses and integrates with the **Pluto StarCraft AI project**.
-
-Pluto AI was created by its respective developers, including **tscmoo**.
-
-PlutoArena is not the original Pluto AI project and does not claim authorship
-of Pluto AI.
-
-### StarCraft: Remastered
-
-StarCraft and StarCraft: Remastered are properties and trademarks of
-Blizzard Entertainment.
+If you encounter a problem, please report it through
+[GitHub Issues](https://github.com/drvladimirdjapic-maker/PlutoArena/issues)
+and attach `PlutoArena.log` (next to `PlutoArena.exe`).
 
 ---
+
+## Credits and licenses
+
+- **PlutoArena**: MIT license, see `LICENSE`.
+- **Pluto AI** by tscmoo - <https://github.com/tscmoo/pluto> (not included).
+  PlutoArena is not the Pluto AI project and does not claim authorship of it.
+- **Pluto Remastered bridge** by lpflhh - <https://github.com/lpflhh/Pluto-AI-Starcraft-Remaster>.
+  The bridge contains BWAPI (LGPL v3) and MinHook (BSD). PlutoArena's changes
+  to it are in `bridge-patch/`.
+- The skin and sounds are generated by `tools/make_skin.py`; the logo is
+  rendered with the Inter font (SIL Open Font License).
 
 ## Disclaimer
 
-PlutoArena is an independent, unofficial community project.
+PlutoArena is an independent, unofficial community project. It is not
+affiliated with, sponsored by, approved by, or endorsed by Blizzard
+Entertainment or the Pluto AI developers.
 
-It is not affiliated with, sponsored by, approved by, or endorsed by
-Blizzard Entertainment or the original Pluto AI developers.
-
-StarCraft, StarCraft: Remastered, Blizzard Entertainment, and their respective
-names, trademarks, and assets belong to their respective owners.
+StarCraft and StarCraft: Remastered are trademarks of Blizzard Entertainment,
+Inc. PlutoArena contains no StarCraft or Blizzard files.
 
 ---
 
 ## Development
 
-PlutoArena is under active development.
-
-Feedback, bug reports, compatibility reports, and testing results are welcome.
+PlutoArena is under active development. Feedback, bug reports,
+compatibility reports and testing results are welcome.
