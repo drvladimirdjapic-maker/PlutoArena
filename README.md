@@ -87,7 +87,7 @@ your winning chances as Pluto saw them during the game.
 The Setup screen checks the StarCraft: Remastered version, Pluto AI files,
 the bridge, difficulty modules, maps, LAN profiles and OCR support.
 
-![PlutoArena setup](screenshots/plutoarena-settings.png)
+![PlutoArena setup](screenshots/plutoarena-settings2.png)
 
 ## Requirements
 
