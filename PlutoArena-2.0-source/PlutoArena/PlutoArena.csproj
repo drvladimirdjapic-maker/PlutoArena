@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <!-- Windows 10 SDK target: needed for the built-in Windows OCR
+         (Windows.Media.Ocr) used to recognise StarCraft menu screens. -->
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Version>2.0.0</Version>
+    <ApplicationIcon>pluto-arena.ico</ApplicationIcon>
+    <Product>Pluto Arena</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Old keyboard-only helpers, replaced by ScrInput / ArenaLauncher. -->
+    <Compile Remove="ScrMapSelector.cs" />
+    <Compile Remove="ScrWindowControl.cs" />
+
+    <!-- Installer files and the published payload are not part of the build. -->
+    <Compile Remove="installer\**" />
+    <None Remove="installer\**" />
+    <Content Remove="installer\**" />
+    <EmbeddedResource Remove="installer\**" />
+
+    <!-- Window / taskbar icon (the exe icon is ApplicationIcon above). -->
+    <EmbeddedResource Include="pluto-arena.ico" />
+
+    <!-- 2.0 skin: backgrounds, button sprites and UI sounds (tools/make_skin.py). -->
+    <None Remove="Skin\**" />
+    <EmbeddedResource Include="Skin\*.png;Skin\*.jpg;Skin\*.wav" />
+
+    <!-- Python scripts that generate the icon and the skin. -->
+    <None Remove="tools\**" />
+
+    <!-- Pluto Remastered bridge source (C++, built with its own scripts). -->
+    <Compile Remove="bridge-src\**" />
+    <None Remove="bridge-src\**" />
+    <Content Remove="bridge-src\**" />
+    <EmbeddedResource Remove="bridge-src\**" />
+  </ItemGroup>
+
+</Project>

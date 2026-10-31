@@ -1,0 +1,36 @@
+--- a/native/scripts/start-pluto.ps1
++++ b/native/scripts/start-pluto.ps1
+@@ -52,10 +52,30 @@
+ $StarCraft = (Resolve-Path -LiteralPath $StarCraft).Path
+ $Pluto = (Resolve-Path -LiteralPath $Pluto).Path
+ Assert-Hash $StarCraft '32dbbdd001dd381cb1b3a719b7ad1fc918a9d4bc99661c675e00254efecca827'
+-Assert-Hash $Pluto '7e360b643c8c0156c03fe0cad9972a3058138ccfe22f921c5b4e0cd0aaf0abef'
++# Supported Pluto releases (PlutoArena): CoG 2026 (cog2026-2578600) and Pluto v2.0.
++# The three files of one release must be used together.
++$plutoReleases = @(
++  @{ Name = 'cog2026-2578600'; Dll = '7e360b643c8c0156c03fe0cad9972a3058138ccfe22f921c5b4e0cd0aaf0abef'; Infer = 'ad880d8be52a6ef03893fa20644b6627e04fcd55e030178c6d52486b82340f2b'; Weights = '00b400eace6e4782202ebdcb3c30db76054aaa6a08c6a7dcb59575abc2d0a26e' },
++  @{ Name = 'v2.0'; Dll = '603fea2f77a4b652f29b832c2977cf5bc9d83bbcb927febd04499220020ce3bc'; Infer = '3f2814a51034b9817b396e52b38d30341ede506a2baedc7cbc11cb6ebcece2cc'; Weights = 'c53a559b4910777dc0e1c561c0d89d243091f465d8e9fc0f5f72e56597067d86' }
++)
++function Get-Sha256([string]$Path) {
++  $algorithm = [System.Security.Cryptography.SHA256]::Create()
++  $stream = $null
++  try {
++    $stream = [System.IO.File]::OpenRead($Path)
++    return [System.BitConverter]::ToString($algorithm.ComputeHash($stream)).Replace('-', '').ToLowerInvariant()
++  } finally {
++    if ($null -ne $stream) { $stream.Dispose() }
++    $algorithm.Dispose()
++  }
++}
++$plutoHash = Get-Sha256 $Pluto
++$release = $plutoReleases | Where-Object { $_.Dll -eq $plutoHash } | Select-Object -First 1
++if (-not $release) { throw "Unsupported or damaged file: $Pluto. Supported: Pluto cog2026-2578600 or Pluto v2.0." }
++Write-Host "[Pluto] Release: $($release.Name)"
+ $modelDirectory = Join-Path (Split-Path $Pluto -Parent) 'pluto'
+-Assert-Hash (Join-Path $modelDirectory 'pluto_infer.exe') 'ad880d8be52a6ef03893fa20644b6627e04fcd55e030178c6d52486b82340f2b'
+-Assert-Hash (Join-Path $modelDirectory 'pluto_weights.bin') '00b400eace6e4782202ebdcb3c30db76054aaa6a08c6a7dcb59575abc2d0a26e'
++Assert-Hash (Join-Path $modelDirectory 'pluto_infer.exe') $release.Infer
++Assert-Hash (Join-Path $modelDirectory 'pluto_weights.bin') $release.Weights
+ function Test-CurrentBridgeBuild {
+   $bridge = Join-Path $bin 'pluto-scr.dll'
+   $loader = Join-Path $bin 'scr-loader.exe'
