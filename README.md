@@ -55,7 +55,25 @@ https://youtu.be/kwpX3nmxXg0
 Choose your race, Pluto's race, map, rank and Pluto version from a single
 console. The window takes the color of your race.
 
-![PlutoArena main interface](screenshots/plutoarena-main.png)
+![PlutoArena - Terran](screenshots/plutoarena-main-terran.png)
+
+| Protoss | Zerg |
+|---|---|
+| ![PlutoArena - Protoss](screenshots/plutoarena-main-protoss.png) | ![PlutoArena - Zerg](screenshots/plutoarena-main-zerg.png) |
+
+### Start-up
+
+A short console start-up shows the Pluto version, maps, rank and your
+record (a click skips it).
+
+![PlutoArena start-up](screenshots/plutoarena-loading.png)
+
+### Rank and Map Selection
+
+Ranks from **S - Original (full strength)** to **F - Beginner**, Pluto 1.0
+or 2.0, and a selection of classic and competitive maps.
+
+![PlutoArena rank selection](screenshots/plutoarena-map.png)
 
 ### Game Summary
 
@@ -70,8 +88,6 @@ The Setup screen checks the StarCraft: Remastered version, Pluto AI files,
 the bridge, difficulty modules, maps, LAN profiles and OCR support.
 
 ![PlutoArena setup](screenshots/plutoarena-settings.png)
-
----
 
 ## Requirements
 
