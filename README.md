@@ -11,11 +11,11 @@ starts two StarCraft windows (yours and Pluto's), creates a LAN Melee game,
 brings Pluto into it and sets the races. You only choose your color and click
 **Ok**.
 
-> **Current version: PlutoArena v2.0**
+> **Current version: PlutoArena v2.2**
 
 ## Download
 
-➡️ **[Download PlutoArena-2.0-Setup.exe](https://github.com/drvladimirdjapic-maker/PlutoArena/releases/download/v2.0/PlutoArena-2.0-Setup.exe)**
+➡️ **[Download the latest PlutoArena Setup](https://github.com/drvladimirdjapic-maker/PlutoArena/releases/latest)**
 
 All versions: [Releases](https://github.com/drvladimirdjapic-maker/PlutoArena/releases)
 (each release lists its VirusTotal scan and SHA-256).
@@ -33,6 +33,12 @@ StarCraft: Remastered and download a supported Pluto AI release separately
 - **Ladder mode** - 2 wins in a row = rank up, 2 losses = rank down
 - **Game summary** after each game, with Pluto 2.0's own win-probability chart
 - **STATS** - your results by Pluto's race, your race and map
+- **Game history with replays** - every game is listed with a link to its replay
+  (also in StarCraft under Watch Replay > PlutoArena)
+- Remembers your races and the last map; tells you when a new version is out
+- **Play from another PC** - host the LAN game on any computer (also Linux/Mac with StarCraft), Pluto Arena on a Windows PC or VM runs only Pluto and joins your game
+- **Team mode** (experimental) - Pluto alone against several players, e.g. 2 vs Pluto; Pluto can also have allies (e.g. two Plutos in Top vs Bottom)
+- **Manual mode** - Pluto Arena starts Pluto, you click through the StarCraft menus yourself (first step towards Linux, see below)
 - Pluto's chat ("gl hf", "gg") shown on your screen, Pluto's sound muted
 - Command-console look that takes the color of your race, UI sounds
 - Race and map selection, arena maps included
@@ -55,25 +61,7 @@ https://youtu.be/kwpX3nmxXg0
 Choose your race, Pluto's race, map, rank and Pluto version from a single
 console. The window takes the color of your race.
 
-![PlutoArena - Terran](screenshots/plutoarena-main-terran.png)
-
-| Protoss | Zerg |
-|---|---|
-| ![PlutoArena - Protoss](screenshots/plutoarena-main-protoss.png) | ![PlutoArena - Zerg](screenshots/plutoarena-main-zerg.png) |
-
-### Start-up
-
-A short console start-up shows the Pluto version, maps, rank and your
-record (a click skips it).
-
-![PlutoArena start-up](screenshots/plutoarena-loading.png)
-
-### Rank and Map Selection
-
-Ranks from **S - Original (full strength)** to **F - Beginner**, Pluto 1.0
-or 2.0, and a selection of classic and competitive maps.
-
-![PlutoArena rank selection](screenshots/plutoarena-map.png)
+![PlutoArena main interface](screenshots/plutoarena-main22.png)
 
 ### Game Summary
 
@@ -87,7 +75,9 @@ your winning chances as Pluto saw them during the game.
 The Setup screen checks the StarCraft: Remastered version, Pluto AI files,
 the bridge, difficulty modules, maps, LAN profiles and OCR support.
 
-![PlutoArena setup](screenshots/plutoarena-settings2.png)
+![PlutoArena setup](screenshots/plutoarena-settings3.png)
+
+---
 
 ## Requirements
 
@@ -96,7 +86,18 @@ the bridge, difficulty modules, maps, LAN profiles and OCR support.
 2. **Pluto AI by tscmoo** - not included (binary-only release, no redistribution license):
    - Pluto 1.0: [release cog2026-2578600](https://github.com/tscmoo/pluto/releases/tag/cog2026-2578600)
    - Pluto 2.0 (optional, CPU with AVX2, 6+ cores): [release v2.0](https://github.com/tscmoo/pluto/releases/tag/v2.0)
-3. **Windows 10/11 64-bit** (PlutoArena uses the English Windows OCR; it tells you if it is missing)
+3. **Windows 10/11 64-bit on an x86/x64 PC** (PlutoArena uses the English Windows OCR; it tells you if it is missing).
+   ARM laptops (e.g. Snapdragon) are not supported: StarCraft and Pluto run there only in emulation and crash.
+4. **A CPU with AVX2** (Pluto's engine needs it; SETUP checks it). In a virtual machine set the CPU type
+   to *host* (Proxmox/QEMU), otherwise Pluto crashes at the start with 0xC000001D and does nothing.
+
+### Linux / Mac
+
+- **Works today:** play from Linux/Mac against Pluto running on a Windows PC in the same network
+  (*Other PC* mode).
+- **Experimental, not tested yet:** everything on one Linux PC with Wine/Proton. Windows text recognition
+  does not exist there, so Pluto Arena switches to manual mode (you click the menus, Pluto Arena starts Pluto
+  and records the result). Reports are welcome in [Issues](https://github.com/drvladimirdjapic-maker/PlutoArena/issues).
 
 > **Important:** The native bridge required by PlutoArena is included with
 > PlutoArena. You do not need to download it separately.
@@ -105,7 +106,7 @@ the bridge, difficulty modules, maps, LAN profiles and OCR support.
 
 ## Installation
 
-1. Run `PlutoArena-2.0-Setup.exe` (no administrator rights needed).
+1. Run `PlutoArena-<version>-Setup.exe` (no administrator rights needed).
 2. Start PlutoArena - on the first start the **SETUP** window opens.
 3. Check the paths (most are found automatically) and click **CHECK**
    (green = OK, yellow = warning, red = must be fixed), then **SAVE**.
@@ -146,16 +147,18 @@ exactly what it does and where in the code:
 | What | Why | Code |
 |---|---|---|
 | Starts StarCraft twice | One window for you, one for Pluto. StarCraft allows only one instance, so the launcher closes the "Starcraft Check For Other Instances" handle in the first process. | `ScrMultiInstance.cs` |
-| Loads the Pluto Remastered bridge into Pluto's StarCraft | The bridge (by lpflhh, see below) runs Pluto inside StarCraft: Remastered. It is started by the bridge's own `start-pluto.ps1` / `scr-loader.exe` - only into Pluto's StarCraft, never into yours. | `ArenaLauncher.StartPlutoBridge` |
-| Runs PowerShell | Only `native\scripts\start-pluto.ps1` of the bridge (checks file hashes, starts StarCraft, injects the bridge). | `ArenaLauncher.StartPlutoBridge` |
+| Loads the Pluto Remastered bridge into Pluto's StarCraft | The bridge (by lpflhh, see below) runs Pluto inside StarCraft: Remastered. Pluto Arena checks the file hashes (StarCraft, Pluto release), starts Pluto's StarCraft and loads the bridge with the bridge's own `scr-loader.exe` - only into Pluto's StarCraft, never into yours. Same steps as the bridge's `start-pluto.ps1`. | `PlutoStarter.cs` |
+| Runs PowerShell (only if enabled) | With `PowerShellStart=1` in `PlutoArena.ini`, the bridge's `native\scripts\start-pluto.ps1` is used instead (as in versions before 2.2). | `ArenaLauncher.StartPlutoBridgePowerShell` |
 | Reads the screen (Windows OCR) | To see which StarCraft menu is shown (Multiplayer, LAN, Create Game, score screen ...). Nothing is saved unless you turn on `DebugImages=1`. | `ScrOcr.cs` |
 | Clicks and presses keys | To click through the StarCraft menus (SendInput). | `ScrInput.cs` |
 | Blocks the real mouse/keyboard for ~45 s | While it clicks through the menus, so a bumped mouse cannot break it. **Esc** cancels at once; it unlocks by itself after 3 minutes at most. Low-level hooks, no keys are recorded. | `InputBlocker.cs` |
 | Mutes Pluto's StarCraft | Windows volume mixer (Core Audio) for Pluto's process only. | `ScrAudio.cs` |
+| Copies replays | After a game, StarCraft's own replay (`Replays\AutoSave`) is copied to `Documents\StarCraft\Maps\Replays\PlutoArena`. | `ArenaStats.cs` (`Replays`) |
+| One request to GitHub at start | Asks `api.github.com` for the latest PlutoArena release to show "NEW x.y". Nothing is downloaded or installed; `CheckUpdates=0` in `PlutoArena.ini` turns it off. | `ArenaExtras.cs` (`Updater`) |
 
-No network connections are made by PlutoArena (the LAN game is StarCraft's
-own). Settings, log and statistics are plain text files next to the exe:
-`PlutoArena.ini`, `PlutoArena.log`, `PlutoArena-stats.txt`.
+Apart from that update check, PlutoArena makes no network connections (the
+LAN game is StarCraft's own). Settings, log and statistics are plain text
+files next to the exe: `PlutoArena.ini`, `PlutoArena.log`, `PlutoArena-stats.txt`.
 
 ---
 
@@ -179,6 +182,8 @@ PlutoArena's changes are in `bridge-patch/` (see its README):
 - Pluto v2.0 support (binding table for the v2.0 `pluto.dll`)
 - LAN games: commands are sent in the same frame, so Pluto acts after the
   4 frames it was trained for
+- team mode: Pluto stays while opponents are left, retargets, may have allies
+  (allied units hidden from Pluto, allied Plutos share one target)
 
 Needs Visual Studio 2022 (or Build Tools) with "Desktop development with C++".
 
@@ -202,9 +207,12 @@ folders (see the parameters at the top of `publish.ps1`).
 | `ArenaTheme.cs` | Custom-drawn controls (sprites in the main window, drawn in code in the dialogs) |
 | `ArenaSkin.cs` | Loads the embedded skin (backgrounds, button sprites) and plays the UI sounds |
 | `StatsForm.cs` | STATS window: results by Pluto's race, your race and map |
-| `ArenaLauncher.cs` | PLAY: starts Pluto and StarCraft, clicks through the menus, supervises the game, rematch |
+| `ArenaLauncher.cs` | PLAY: starts Pluto and StarCraft, clicks through the menus, supervises the game, rematch, team mode, other-PC mode |
+| `PlutoStarter.cs` | Starts Pluto's StarCraft and loads the bridge (hash checks, bridge.ini, scr-loader) |
+| `ArenaMenuText.cs` | Text-only menu decisions (LAN games list, profiles), tested in `tests/MenuRegression` |
 | `ArenaSetup.cs` | SETUP window and the checks (StarCraft version, Pluto files, bridge, OCR) |
 | `ArenaConfig.cs` | `PlutoArena.ini` |
+| `ArenaPlatform.cs` | Windows or Wine; screen reading on/off (manual mode) |
 | `ArenaStats.cs` | Your record, ladder mode, Pluto's per-opponent memory and 2.0 game log |
 | `ArenaExtras.cs` | Version/icon, Pluto chat pop-up, game summary window |
 | `ScrOcr.cs` | Screen reading (Windows OCR) with fallbacks for bright menu backgrounds |
@@ -229,6 +237,7 @@ Compatibility may depend on:
   Blizzard patch needs an updated bridge)
 - Pluto AI version (only the two releases above pass the bridge's file check)
 - Windows configuration (English OCR must be installed)
+- ARM (Snapdragon) laptops are not supported
 
 If you encounter a problem, please report it through
 [GitHub Issues](https://github.com/drvladimirdjapic-maker/PlutoArena/issues)
